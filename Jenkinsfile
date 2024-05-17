@@ -22,9 +22,10 @@ pipeline {
         stage('Login') {
             steps {
                 script {
-                    echo "Logging in to Docker Hub with user: ${env.DOCKERHUB_CREDENTIALS_USR}"
-                    echo "Loggin in to Docker Hub with user: ${env.DOCKERHUB_CREDENTIALS_PSW}"
-                    bat 'echo %DOCKERHUB_CREDENTIALS_PSW% | docker login -u %DOCKERHUB_CREDENTIALS_USR% --password-stdin'
+                    def dockerUsername = env.DOCKERHUB_CREDENTIALS_USR
+                    def dockerPassword = env.DOCKERHUB_CREDENTIALS_PSW
+                    echo "Logging in to Docker Hub with user: ${dockerUsername}"
+                    bat "echo ${dockerPassword} | docker login -u ${dockerUsername} --password-stdin"
                 }
             }
         }
