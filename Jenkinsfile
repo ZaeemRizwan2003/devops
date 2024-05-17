@@ -23,6 +23,7 @@ pipeline {
             steps {
                 script {
                     echo "Logging in to Docker Hub with user: ${env.DOCKERHUB_CREDENTIALS_USR}"
+                    echo "Loggin in to Docker Hub with user: ${env.DOCKERHUB_CREDENTIALS_PSW}"
                     bat 'echo %DOCKERHUB_CREDENTIALS_PSW% | docker login -u %DOCKERHUB_CREDENTIALS_USR% --password-stdin'
                 }
             }
